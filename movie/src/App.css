@@ -1,44 +1,341 @@
-.App {
-  text-align: center;
+:root {
+
+  /* color -variable */
+  --clr-primary: #f5c518d8;
+  --clr-primary-hover: #f5c518;
+  --clr-gray100: #f0f7f8;
+  --clr-gray200: #cfd8dc;
+
+
+  --clr-gray150: #f4f6fb;
+  --clr-gray300: #e1e5ee;
+  --clr-gray400: #767b91;
+  --clr-gray500: #4f546c;
+  --clr-gray600: #2a324b;
+  --clr-gray700: #161d34;
+  --clr-gray800: #0c101d;
+  --clr-light: #f5c518b1;
+  --clr-dark:  #f5c518;
+  --loading-radius: 2rem;
+ 
+  --animation: ease-out;
+
+  /* border -radius */
+  --radius: 0.2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/* Styling root wrapper for paralax effect*/
+#root{
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Navbar */
+body {
+  font-family: Montserrat, sans-serif;
+  background: var(--clr-gray100);
+}
+
+
+.nav-list {
+  background-color: white;
+  box-shadow: 0px 0px 10px var(--clr-gray200);
+  margin: 0;
+  padding: 1rem 0;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-item {
+  list-style: none;
+  margin-right: 2rem;
+  transition: all 300ms ease-in;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-item:first-child {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+
+.nav-item:first-child:hover {
+  transform: scale(1.1);
+}
+
+.btn-primary {
+
+  font-family: Montserrat, sans-serif;
+  font-size: 1.2rem;
+  background-color: var(--clr-primary);
+  border: none;
+  outline: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+ 
+}
+
+
+.btn-primary:hover {
+  background-color: var(--clr-primary-hover);
+}
+
+
+/* Banner-css*/
+.banner {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;
+  align-items:flex-start;
+  height: 70vh;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.banner-background {
+  transform: translateZ(-10px) scale(2);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.banner-content{
+  padding: 2rem;
+  background-color: #0000008a;
+  margin-left: 1rem;
+  border-radius: 0.6rem;
+}
+.banner-title {
+  font-size:  2.4rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  
+}
+
+.banner-description {
+  color: white;
+  font-size: 1.2rem;
+
+  max-inline-size: 70vw;
+}
+
+
+/* Movie gallery*/
+.content {
+  margin-top: 3.5rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.807);
+
+}
+
+.movie-gallery {
+  display: grid;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-auto-rows: 20rem;
+  gap: 1.5rem;
+}
+
+.movie-card{
+  overflow: hidden;
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+}
+
+
+.movie-card .movie-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 250ms ease-out;
+}
+
+.movie-card .movie-card__details {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px) brightness(1.3);
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 350ms;
+}
+
+
+/* Movie-card hover effect */
+
+.movie-card:hover .movie-card__img {
+  transform: scale(1.1);
+
+}
+
+.movie-card:hover .movie-card__details {
+  opacity: 1;
+
+}
+
+.movie-card:hover .movie-card__details h3 {
+  top:0;
+
+}
+
+.trending {
+  text-align: center;
+  padding: 1.5rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.movie-card-title {
+   font-size: 1.2rem;
+   font-weight: bold;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 
-.banner-card {
+
+/* Loading bar code */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  
+}
+.loading__dot {
+  height: 1rem;
+  width: 1rem;
+  border-radius: var(--loading-radius);
+
+  display: inline-block;
+  margin: 0.5rem;
+  animation: loading 6s var(--animation) infinite;
+  vertical-align: middle;
+}
+
+@keyframes loading {
+  0%, 100% {
+      background-color: var(--clr-light);
+      height: 1rem;
+  }
+
+  20% {
+   
+      height: 5rem;
+  }
+
+  40% {
+
+      height: 1rem;
+  }
+
+  50% {
+      background-color: var(--clr-dark);
+      height: 1rem;
+  } 
+
+  70% { 
+      height: 5rem;
+  } 
+
+
+  90% { 
+      height: 1rem;
+  } 
+}
+
+
+.loading__dot:nth-child(1) {
+  animation-delay: calc(1*0.2s);
+}
+
+.loading__dot:nth-child(2) {
+  animation-delay: calc(2*0.2s);
+}
+
+.loading__dot:nth-child(3) {
+  animation-delay: calc(3*0.2s);
+}
+
+.loading__dot:nth-child(4) {
+  animation-delay: calc(4*0.2s);
+}
+.loading__dot:nth-child(5) {
+  animation-delay: calc(5*0.2s);
+}
+
+
+.pagination-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+
+}
+.pagination {
+  display: inline-block;
+
+  background-color: var(--clr-gray200);
+  border-radius: var(--radius);
+  box-shadow: 0px 0px 2px var(--clr-gray200);
+
+}
+
+.pagination a {
+  color: var(--clr-gray800);
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  font-size: 1.5rem;
+}
+
+.pagination a.active {
+  background-color: var(--clr-dark);
+  color: var(--clr-gray800);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: var(--clr-gray500);
+  color: var(--clr-gray100);
+
+}
+
+
+
+/* old code */
+
+
+
+/* .banner-card {
   background-color: white;
   width: 100vw;
 }
@@ -100,6 +397,6 @@
 .movie-img {
   height: 40vh;
   width: 80%;
-}
+} */
 
 
